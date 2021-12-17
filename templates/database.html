@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All_Data</title>
+</head>
+
+<body>
+    <div class="container">
+        <table class="table table-dark">
+            
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <td width="50"></td>
+                    <th scope="col">Cordinates</th>
+                    <td width="50"></td>
+                    <th scope="col">Cookies Enabled</th>
+                    <td width="50"></td>
+                    <th scope="col">Browser Language</th>
+                    <td width="50"></td>
+                    <th scope="col">Operating system</th>
+                    <td width="50"></td>
+                    <th scope="col">Time</th>
+                    <td width="50"></td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for fordb in info %}
+                <tr>
+                    <th scope=row>{{loop.index}}</th>
+                    <td></td>
+                    <td>{{ fordb.location }}</td>
+                    <td></td>
+                    <td>{{ fordb.Cookies_enabled }}</td>
+                    <td></td>
+                    <td>{{ fordb.Browser_Language }}</td>
+                    <td></td>
+                    <td>{{ fordb.OS }}</td>
+                    <td></td>
+                    <td>{{fordb.date_created}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
